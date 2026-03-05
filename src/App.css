@@ -1,0 +1,116 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.navbar {
+  background-color: #7b4b35;
+}
+.nav-icon {
+  color: white;
+  padding: 0px 10px;
+  font-size: 24px;
+  transition: 0.3s ease;
+}
+.nav-icon:hover {
+  color: rgb(239, 154, 154);
+  font-size: 30px;
+}
+
+footer {
+  background-color: #7b4b35;
+}
+
+.nav-brand {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  text-decoration: none;
+  color: white;
+  letter-spacing: 10px;
+  font-size: 20px;
+}
+.category-card:hover {
+  transition: 0.2s;
+  transform: scale(1.1);
+}
+
+.category-images {
+  height: 150px;
+  width: 100%;
+}
+
+.category-name {
+  background-color: white;
+  color: black;
+  opacity: 0.5;
+  transition: 0.2s;
+}
+.category-name:hover {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  opacity: 1;
+}
+
+.product-image {
+  height: 250px;
+  width: 100%;
+}
+
+.btn.add-button {
+  background-color: #7b4b35;
+  color: white;
+  transition: 0.2s;
+}
+.btn.add-button:hover {
+  background-color: #ef9a9a;
+}
+
+.filter-section {
+  font-family: Courier, monospace;
+}
+
+.success-message {
+  color: #7b4b35;
+}
+
+.fail-message {
+  color: #920f0f;
+}
+
+.btn.viewCart-button {
+  background-color: #ef9a9a;
+}
+
+.btn.viewCart-button:hover {
+  background-color: #7b4b35;
+  color: white;
+}
+
+.btn.addProduct-button {
+  outline-style: double;
+  outline-color: #ef9a9a;
+  outline-width: 2px;
+
+  transition: 0.2s;
+}
+.btn.addProduct-button:hover {
+  outline: none;
+  background-color: #7b4b35;
+  color: white;
+}
+
+.btn.order-button {
+  background-color: #7b4b35;
+  color: white;
+
+  transition: 0.2s;
+}
+.btn.order-button:hover {
+  outline: none;
+  background-color: #ef9a9a;
+}
