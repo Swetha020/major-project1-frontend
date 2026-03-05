@@ -1,3 +1,4 @@
+import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Nav from "./components/Nav";
@@ -11,6 +12,7 @@ import Cart from "./pages/Cart";
 import Profile from "./pages/Profile";
 import { ProfileProvider } from "./context/ProfileContext";
 import { OrdersProvider } from "./context/OrdersContext";
+
 
 export default function App() {
   return (
