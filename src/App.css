@@ -12,6 +12,7 @@
   background-color: #7b4b35;
 }
 .nav-icon {
+  text-decoration: none;
   color: white;
   padding: 0px 10px;
   font-size: 24px;
@@ -20,6 +21,12 @@
 .nav-icon:hover {
   color: rgb(239, 154, 154);
   font-size: 30px;
+}
+.nav-count {
+  color: #fff;
+  font-size: 15px;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 2px 5px;
 }
 
 footer {
