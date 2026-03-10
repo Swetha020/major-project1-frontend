@@ -9,19 +9,31 @@ export default function Nav() {
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
   const { cartProducts } = useCartContext();
-  const {wishlistProducts} = useFurnitureContext()
+  const { wishlistProducts } = useFurnitureContext();
   const searchHandler = () => {
     navigate(`/products?search=${searchValue}`);
   };
 
   return (
-    <div>
+    
       <nav className="navbar navbar-expand-lg ">
         <div className="container p-2">
-          <Link to="/" className="nav-brand">
-            FurniCart
-          </Link>
-          <div className="d-flex">
+            <Link to="/" className="nav-brand">
+              FurniCart
+            </Link>          
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarIcons"
+            aria-controls="navbarIcons"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse " id="navbarIcons">
+            <div className="d-flex ms-auto">
             <input
               className="form-control mx-2"
               style={{ width: "250px" }}
@@ -34,23 +46,17 @@ export default function Nav() {
               Search
             </button>
           </div>
-          <div className="d-flex">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link to={"/wishList"} className="nav-icon">
                   <BsFillHeartFill />
-                 <span className="nav-count">
-                    ({wishlistProducts.length})
-                  </span>
+                  <span className="nav-count">({wishlistProducts.length})</span>
                 </Link>
-                 
               </li>
               <li className="nav-item">
                 <Link to={"/cart"} className="nav-icon">
                   <BsCart3 />
-                  <span className=" nav-count">
-                    ({cartProducts.length})
-                  </span>
+                  <span className=" nav-count">({cartProducts.length})</span>
                 </Link>
               </li>
               <li className="nav-item">
@@ -62,6 +68,5 @@ export default function Nav() {
           </div>
         </div>
       </nav>
-    </div>
   );
 }

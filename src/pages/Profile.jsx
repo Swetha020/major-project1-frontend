@@ -23,7 +23,7 @@ export default function Profile() {
   return (
     <div className="container d-flex justify-content-center align-items-center h-100">
       <div className="card m-3">
-        <div className="card-body text-center" style={{ width: 600 }}>
+        <div className="card-body text-center" >
           <img
             src="https://placehold.co/100"
             className="rounded-circle mb-3"
@@ -52,7 +52,7 @@ export default function Profile() {
               <p>No Orders found</p>
             ) : (
               orders.map((order) => (
-                <div className="card m-2">
+                <div className="card border-4 m-4">
                   <div className="m-2">
                     <p className="m-0 fw-bold">Order Address: </p>
                     <p>
@@ -64,6 +64,8 @@ export default function Profile() {
                     <p>
                       {`${new Date(order.createdAt).toLocaleDateString()} at ${new Date(order.createdAt).toLocaleTimeString()}`}{" "}
                     </p>
+                    <div className="table-responsive">
+
                     <table className="table">
                       <thead>
                         <tr>
@@ -87,6 +89,7 @@ export default function Profile() {
                         ))}
                       </tbody>
                     </table>
+                    </div>
                     <div className="text-start">
                     <p>Total MRP: {order.totalPrice} </p>
                     <p>Total Discount: {order.totalDiscount}</p>
@@ -103,8 +106,10 @@ export default function Profile() {
           <p className="mb-3">
             <strong>Address:</strong>
           </p>
-          <div>
+
+          <div className="row">
             {user.addresses.map((addr) => (
+                <div className="col-12 col-lg-6">
               <div className="card m-3" key={addr._id}>
                 <div className="card-body">
                   <p className="m-0">
@@ -141,6 +146,7 @@ export default function Profile() {
                     Edit
                   </button>
                 </div>
+              </div>
               </div>
             ))}
           </div>
