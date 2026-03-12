@@ -7,12 +7,14 @@ import { useProfileContext } from "../context/ProfileContext";
 import { useState } from "react";
 import AddressForm from "../components/AddressForm";
 import { useToggle } from "../hooks/useToggle";
+import { toast } from "react-toastify";
 
 export default function Cart() {
   const { cartProducts, removeFromCart, updateCartQuantity } = useCartContext();
-  const { cartQuantity,totalPrice, subTotal, totalDiscount, cartTotal } = useCartStatus();
+  const { cartQuantity, totalPrice, subTotal, totalDiscount, cartTotal } =
+    useCartStatus();
   const { wishlistHandler } = useFurnitureContext();
-  const { placeOrder, orderSuccess } = useOrdersContext();
+  const { placeOrder } = useOrdersContext();
   const { user, addAddress } = useProfileContext();
   const [orderAddress, setOrderAddress] = useState();
   const deliveryCharge = subTotal >= 5000 ? 0 : 200;
@@ -28,12 +30,11 @@ export default function Cart() {
     <>
       <div className="container">
         <h2 className="text-center display-2 m-3"> Cart</h2>
-        {orderSuccess && (
+        {/* {orderSuccess && (
           <h4 className="text-center text-success">
-            {" "}
             Order Successfully placed!{" "}
           </h4>
-        )}
+        )} */}
         {cartProducts.length > 0 ? (
           <div className="row">
             <div className="col-md-6">
@@ -64,7 +65,10 @@ export default function Cart() {
                         />
                         <button
                           className="w-100 btn btn-outline-danger my-1 rounded-0"
-                          onClick={() => removeFromCart(product)}
+                          onClick={() => {
+                            removeFromCart(product);
+                            toast.error("Product Removed from Cart");
+                          }}
                         >
                           Remove From Cart
                         </button>
@@ -73,6 +77,7 @@ export default function Cart() {
                           onClick={() => {
                             removeFromCart(product);
                             wishlistHandler(product);
+                            toast.error("Product Moved to Wishlist");
                           }}
                         >
                           Move To Wishlist
@@ -155,7 +160,7 @@ export default function Cart() {
                   <button
                     className="btn order-button w-100 mt-2"
                     disabled={!orderAddress}
-                    onClick={() =>
+                    onClick={() => {
                       placeOrder({
                         items: cartProducts.map((item) => ({
                           product: item._id,
@@ -167,8 +172,9 @@ export default function Cart() {
                         deliveryCharge,
                         totalAmount: cartTotal(deliveryCharge),
                         address: orderAddress,
-                      })
-                    }
+                      });
+                      toast.success("Order Successfully Placed");
+                    }}
                   >
                     Place Order
                   </button>

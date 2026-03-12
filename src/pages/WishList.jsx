@@ -2,22 +2,21 @@ import useFurnitureContext from "../context/FurnitureContext";
 import { Link } from "react-router-dom";
 import { CgCloseO } from "react-icons/cg";
 import useCartContext from "../context/CartContext";
-import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function WishList() {
   const { wishlistProducts, removeFromWishlist } = useFurnitureContext();
   const { addToCart } = useCartContext();
-  const [message, setMessage] = useState("");
 
   return (
     <div className="container">
       <h2 className="text-center display-2 m-3">Wishlist</h2>
 
-      {message && (
+      {/* {message && (
         <div className="text-center">
           <p className="text-danger fs-3">{message}</p>
         </div>
-      )}
+      )} */}
 
       <div className="row">
         {wishlistProducts.length > 0 ? (
@@ -30,8 +29,7 @@ export default function WishList() {
                       className="btn btn-link mt-2"
                       onClick={() => {
                         removeFromWishlist(product._id);
-                        setMessage(`${product.name} removed from wishlist`);
-                        setTimeout(() => setMessage(""), 2000);
+                        toast.info("Product Removed From Wishlist");
                       }}
                     >
                       <CgCloseO size={30} color="Black" />
@@ -57,8 +55,7 @@ export default function WishList() {
                       onClick={() => {
                         addToCart(product);
                         removeFromWishlist(product._id);
-                        setMessage(`1 ${product.name} added to cart`);
-                        setTimeout(() => setMessage(""), 2000);
+                        toast.success("Product Moved to Cart");
                       }}
                     >
                       Move To Cart

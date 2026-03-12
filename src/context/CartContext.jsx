@@ -6,7 +6,6 @@ export default useCartContext;
 
 export function CartProvider({ children }) {
   const [cartProducts, setCartProducts] = useState([]);
-  const [isAdded, setIsAdded] = useState(false);
 
   function addToCart(product, quantity = 1) {
     setCartProducts((previousProducts) => {
@@ -21,9 +20,7 @@ export function CartProvider({ children }) {
           )
         : [...previousProducts, { ...product, cartQuantity: quantity }];
     });
-    setIsAdded(true);
-    setTimeout(() => setIsAdded(false), 3000);
-  }
+   }
 
   function updateCartQuantity(product, quantity) {
     setCartProducts((previousProducts) =>
@@ -51,7 +48,7 @@ export function CartProvider({ children }) {
         removeFromCart,
         updateCartQuantity,
         clearCart,
-        isAdded,
+        
       }}
     >
       {children}

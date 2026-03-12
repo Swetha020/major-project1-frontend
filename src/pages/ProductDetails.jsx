@@ -5,16 +5,17 @@ import { getDiscountedPrice } from "../utils/discount";
 import QuantitySelector from "../components/QuantitySelector";
 import useCartContext from "../context/CartContext";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function ProductDetail() {
   const productId = useParams();
   const { products, wishlistProducts, wishlistHandler } = useFurnitureContext();
 
   const productData = products.find(
-    (product) => product._id == productId.productId
+    (product) => product._id == productId.productId,
   );
-  
-  const { cartProducts, addToCart, isAdded } = useCartContext();
+
+  const { cartProducts, addToCart } = useCartContext();
 
   const { finalPrice } = getDiscountedPrice(productData);
 
@@ -61,20 +62,27 @@ export default function ProductDetail() {
             <button
               className="btn addProduct-button w-100"
               onClick={() => {
-                addToCart(productData, quantity);
-                setTimeout(() => setQuantity(1), 3000);
+                if (remainingQuantity > 0) {
+                  addToCart(productData, quantity);
+                  toast.success(
+                    `${quantity} ${quantity === 1 ? productData.name : productData.name + "s"} added to cart!`,
+                  );
+                  setQuantity(1);
+                } else {
+                  toast.error("Maximum products added to cart");
+                }
               }}
               disabled={remainingQuantity === 0}
             >
               Add to cart
             </button>
-            {isAdded && (
+            {/* {isAdded && (
               <p className="text-success">
                 {quantity}{" "}
                 {quantity == 1 ? productData.name : productData.name + "s"}{" "}
                 added to cart Successfully
               </p>
-            )}
+            )} */}
           </div>
           <div className="col-md-9">
             <h1 className="display-5 mb-2">{productData.name}</h1>
@@ -103,7 +111,7 @@ export default function ProductDetail() {
                   availableQuantity={remainingQuantity}
                 />{" "}
                 {cartProduct && remainingQuantity === 0 && (
-                  <p className="text-danger">Maximum products added to cart</p>
+                  <p className="text-danger">Maximum Available products added to cart</p>
                 )}
                 {!cartProduct && productData.availableQuantity === 0 && (
                   <p className="text-danger">Product sold out</p>
@@ -111,6 +119,14 @@ export default function ProductDetail() {
                 <hr />
                 <strong>Description: </strong>
                 <p>{productData.description}</p>
+                <p>
+                  Dimensions: {productData.dimensions.width} x{" "}
+                  {productData.dimensions.height} x{" "}
+                  {productData.dimensions.depth}
+                </p>
+                <p>Materials: {productData.materials.join(", ")}</p>
+                <p>Colors: {productData.colors.join(", ")}</p>
+                <hr />
                 <p>
                   Return Policy:{" "}
                   {productData.isReturnApplicable

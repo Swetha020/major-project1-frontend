@@ -12,7 +12,8 @@ import Cart from "./pages/Cart";
 import Profile from "./pages/Profile";
 import { ProfileProvider } from "./context/ProfileContext";
 import { OrdersProvider } from "./context/OrdersContext";
-
+import { ToastContainer, Zoom  } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function App() {
   return (
@@ -29,7 +30,7 @@ export default function App() {
                   path="/products/categories/:category"
                   element={<Products />}
                 />
-               
+
                 <Route path="/wishList" element={<WishList />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route
@@ -39,6 +40,19 @@ export default function App() {
                 <Route path="/profile" element={<Profile />} />
               </Routes>
               <Footer />
+              <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                transition={Zoom}
+              />
             </Router>
           </OrdersProvider>
         </CartProvider>

@@ -11,7 +11,6 @@ export function OrdersProvider({ children }) {
   const {data: placedOrders = [], loading, error} = useFetch("https://major-project1-backend-eight.vercel.app/orders");
   useEffect(() => setOrders(placedOrders), [placedOrders]);
   const [orders, setOrders] = useState(placedOrders);
-  const [orderSuccess, setOrderSuccess] = useState(false);
 
   const { clearCart } = useCartContext();
 
@@ -26,15 +25,11 @@ export function OrdersProvider({ children }) {
     const placedOrder = data.order;
     setOrders((prev) => [...prev, placedOrder]);
     clearCart();
-    setOrderSuccess(true);
-
-    setTimeout(() => {
-      setOrderSuccess(false);
-    }, 3000);
+   
   };
 
   return (
-    <OrdersContext.Provider value={{ orders, placeOrder, orderSuccess }}>
+    <OrdersContext.Provider value={{ orders, placeOrder }}>
       {children}
     </OrdersContext.Provider>
   );

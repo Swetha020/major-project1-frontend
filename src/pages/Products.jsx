@@ -4,6 +4,7 @@ import useCartContext from "../context/CartContext";
 import ProductCount from "../components/ProductCount";
 import { BsFillHeartFill } from "react-icons/bs";
 import { Link, useParams, useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function Products() {
   const {
@@ -14,11 +15,11 @@ export default function Products() {
     wishlistProducts,
     wishlistHandler,
   } = useFurnitureContext();
-  const { cartProducts, addToCart, isAdded } = useCartContext();
+
+  const { cartProducts, addToCart } = useCartContext();
   const [price, setPrice] = useState(50000);
   const [rating, setRating] = useState(0);
   const [sortBy, setSortBy] = useState("");
-  const [isLimited, setIsLimited] = useState(false);
 
   const category = useParams().category;
 
@@ -27,6 +28,14 @@ export default function Products() {
   const searchQuery = queryParams.get("search") || "";
 
   const [categories, setCategories] = useState(category ? category : []);
+
+  const availableCategories = [
+    "Living-Room",
+    "Bed-Room",
+    "Dining",
+    "Office",
+    "Home-Decor",
+  ];
 
   useEffect(() => {
     if (!loading) {
@@ -119,43 +128,20 @@ export default function Products() {
                 {!category && (
                   <div>
                     <h4 className="fw-bold">Category</h4>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="LivingRoom"
-                        checked={categories.includes("Living-Room")}
-                        onChange={() => checkboxHandler("Living-Room")}
-                      />
-                      <label className="form-check-label" htmlFor="LivingRoom">
-                        Living Room
-                      </label>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="BedRoom"
-                        checked={categories.includes("Bed-Room")}
-                        onChange={() => checkboxHandler("Bed-Room")}
-                      />
-                      <label className="form-check-label" htmlFor="BedRoom">
-                        Bed Room
-                      </label>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="Office"
-                        checked={categories.includes("Office")}
-                        onChange={() => checkboxHandler("Office")}
-                      />
-                      <label className="form-check-label" htmlFor="Office">
-                        Office
-                      </label>
-                    </div>
-                    <hr />
+                    {availableCategories.map((cate) => (
+                      <div className="form-check" key={cate}>
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          id={cate}
+                          checked={categories.includes(cate)}
+                          onChange={() => checkboxHandler(cate)}
+                        />
+                        <label className="form-check-label" htmlFor={cate}>
+                          {cate}
+                        </label>
+                      </div>
+                    ))}
                   </div>
                 )}
 
@@ -201,32 +187,10 @@ export default function Products() {
                 </select>
               </p>
             </div>
-            <div className="m-2">
-              {isAdded && (
-                <div className="text-center">
-                  <h3 className="success-message">
-                    Added To Cart Successfully
-                  </h3>
-                  <Link to="/cart" className="btn viewCart-button">
-                    View Cart
-                  </Link>
-                </div>
-              )}
-              {isLimited && (
-                <div className="text-center">
-                  <h3 className="fail-message">
-                    Maximum Available Product In Cart
-                  </h3>
-                  <Link to="/cart" className="btn viewCart-button">
-                    View Cart
-                  </Link>
-                </div>
-              )}
-            </div>
 
             <div className="row">
               {loading ? (
-                <div className="d-flex justify-content-center align-items-center vh-50  ">
+                <div className="d-flex justify-content-center align-items-center h-100  ">
                   <h2>Loading our products....!</h2>
                 </div>
               ) : sortedProducts.length > 0 ? (
@@ -272,9 +236,9 @@ export default function Products() {
                             const remainingQuantity = addTOCartHandler(product);
                             if (remainingQuantity > 0) {
                               addToCart(product);
+                              toast.success("Added to Cart Successfully!");
                             } else {
-                              setIsLimited(true);
-                              setTimeout(() => setIsLimited(false), 3000);
+                              toast.error("Maximum Available Product in Cart!");
                             }
                           }}
                           disabled={isOutOfStock(product)}
