@@ -169,7 +169,18 @@ export default function Profile() {
                   {!isEdit && (
                     <button
                       className="btn btn-secondary w-100"
-                      onClick={showForm.toggle}
+                      onClick={() => {
+                        setIsEdit(false);
+                        setAddress({
+                          _id: null,
+                          doorNo: "",
+                          street: "",
+                          city: "",
+                          state: "",
+                          pincode: "",
+                        });
+                        showForm.toggle();
+                      }}
                     >
                       Add new Address
                     </button>
