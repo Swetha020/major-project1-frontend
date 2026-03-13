@@ -3,6 +3,7 @@ import { useToggle } from "../hooks/useToggle";
 import { useState } from "react";
 import useOrdersContext from "../context/OrdersContext";
 import AddressForm from "../components/AddressForm";
+import { toast } from "react-toastify";
 
 export default function Profile() {
   const { user, addAddress, deleteAddress, updateAddress } =
@@ -134,7 +135,10 @@ export default function Profile() {
 
                           <button
                             className="btn btn-outline-danger mx-2"
-                            onClick={() => deleteAddress(addr._id)}
+                            onClick={() => {
+                              deleteAddress(addr._id);
+                              toast.error("Address Deleted Successfully");
+                            }}
                           >
                             Delete
                           </button>
@@ -150,6 +154,7 @@ export default function Profile() {
                                 pincode: addr.pincode,
                               });
                               setIsEdit(true);
+
                               showForm.toggle();
                             }}
                           >
@@ -177,9 +182,13 @@ export default function Profile() {
                     isEdit={isEdit}
                     onSubmit={(e) => {
                       e.preventDefault();
-                      isEdit
-                        ? updateAddress(address._id, address)
-                        : addAddress(address);
+                      if (isEdit) {
+                        updateAddress(address._id, address);
+                        toast.info("Address Updated Successfully");
+                      } else {
+                        addAddress(address);
+                        toast.success("Address Added Successfully");
+                      }
                       setAddress({
                         _id: null,
                         doorNo: "",

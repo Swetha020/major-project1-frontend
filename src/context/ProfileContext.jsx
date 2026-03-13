@@ -34,7 +34,7 @@ export function ProfileProvider({ children }) {
   }
 
   async function updateAddress(addressId, updateAddress) {
-    const response = await fetch(`https://major-project1-backend-eight.vercel.app/${addressId}`, {
+    const response = await fetch(`https://major-project1-backend-eight.vercel.app/address/${addressId}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updateAddress),
@@ -48,7 +48,7 @@ export function ProfileProvider({ children }) {
   }
 
   async function deleteAddress(addressId) {
-    await fetch(`https://major-project1-backend-eight.vercel.app/${addressId}`, {
+    await fetch(`https://major-project1-backend-eight.vercel.app/address/${addressId}`, {
       method: "DELETE",
     });
     setAddresses((prevAddresses) =>
