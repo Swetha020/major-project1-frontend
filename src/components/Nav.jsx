@@ -15,10 +15,9 @@ export default function Nav() {
   };
 
   return (
-    
       <nav className="navbar navbar-expand-lg ">
         <div className="container p-2">
-            <Link to="/" className="nav-brand">
+            <Link to="/" className="nav-brand ">
               FurniCart
             </Link>          
           <button
@@ -46,7 +45,7 @@ export default function Nav() {
               Search
             </button>
           </div>
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul className="navbar-nav ms-lg-auto d-flex flex-row mt-2">
               <li className="nav-item">
                 <Link to={"/wishList"} className="nav-icon">
                   <BsFillHeartFill />

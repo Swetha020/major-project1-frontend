@@ -93,16 +93,16 @@ export default function Cart() {
                 <div className="card-body">
                   <h4> Price Details</h4>
                   <hr />
-                  <p>
+                  <p className="d-flex justify-content-between">
                     Subtotal ({cartQuantity}
-                    {cartQuantity > 1 ? "items" : "item"}) -
+                    {cartQuantity > 1 ? "items" : "item"})
                     <span> Rs. {subTotal}</span>
                   </p>
-                  <p>
-                    Total Discount - <span> Rs. {totalDiscount}</span>
+                  <p className="d-flex justify-content-between">
+                    Total Discount <span> Rs. {totalDiscount}</span>
                   </p>
-                  <p>
-                    Delivery Charges - <span> Rs. {deliveryCharge}</span>
+                  <p className="d-flex justify-content-between">
+                    Delivery Charges <span> Rs. {deliveryCharge}</span>
                   </p>
                   {subTotal < 5000 && (
                     <p className="text-danger small">
@@ -110,11 +110,11 @@ export default function Cart() {
                       delivery *
                     </p>
                   )}
-                  <h3 className="fw-bold">
+                  <h3 className="fw-bold text-end">
                     Cart Total - {cartTotal(deliveryCharge)}
                   </h3>
                   <hr />
-                  <p>{user.name}</p>
+                  <p className="fw-bold fs-5">{user.name}</p>
                   <p>Address: </p>
                   {user.addresses.length > 0 ? (
                     user.addresses.map((addr) => (

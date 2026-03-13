@@ -35,7 +35,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="container-lg">
+      <div className="container">
         <div className="mt-3">
           <div className="d-flex align-items-center my-4">
             <hr className="flex-grow-1 " />
@@ -46,7 +46,7 @@ export default function Home() {
           </div>
           <div className="row g-3">
             {categories.map((category) => (
-              <div className="col-2">
+              <div className="col-lg-2 col-12">
                 <div className="card category-card">
                   <img
                     className="category-images object-fit-cover rounded"
@@ -67,6 +67,7 @@ export default function Home() {
             ))}
           </div>
         </div>
+        <br />
         <hr />
         <div
           id="furnitureCarousel"
@@ -122,7 +123,7 @@ export default function Home() {
           </button>
         </div>
 
-        <div className="my-3 my-4">
+        <div className="mb-5">
           <div className="d-flex align-items-center my-4">
             <hr className="flex-grow-1 " />
             <span className="px-3 fw-semibold">Offer Zone</span>
@@ -130,7 +131,7 @@ export default function Home() {
           </div>
           <div className="row">
             <div className="col-md-6">
-              <div className="card bg-dark text-light">
+              <div className="card mb-3 bg-dark text-light">
                 <div className="row">
                   <div className="col-md-4">
                     <img
@@ -186,7 +187,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div>
+        {/* <div>
           <div className="d-flex align-items-center my-4">
             <hr className="flex-grow-1 " />
             <span className="px-3 fw-semibold">Shop By Product</span>
@@ -228,7 +229,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

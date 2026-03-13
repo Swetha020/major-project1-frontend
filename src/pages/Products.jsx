@@ -81,16 +81,16 @@ export default function Products() {
   return (
     <>
       <div className="row">
-        <button
-          className="btn btn-secondary m-2 font-monospace d-lg-none"
+        <button 
+          className="btn btn-secondary my-2 font-monospace d-lg-none"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#filterBar"
         >
           Filter
         </button>
-        <div className="col-lg-2 col-12 collapse d-lg-block" id="filterBar">
-          <div className="filter-section">
+        <div className="col-lg-3 col-12 collapse d-lg-block" id="filterBar">
+          <div className="filter-section ms-lg-5 me-4">
             <div className="ps-5 pt-4">
               <div className="d-flex justify-content-between align-items-center">
                 <h3 className="fw-bold">Filters</h3>
@@ -144,7 +144,7 @@ export default function Products() {
                     ))}
                   </div>
                 )}
-
+                <hr />
                 <h4 className="fw-bold">Rating</h4>
                 {[4, 3, 2, 1].map((i) => (
                   <div className="form-check">
@@ -165,19 +165,20 @@ export default function Products() {
             </div>
           </div>
         </div>
-        <div className="col-lg-10 col-12">
+        <div className="col-lg-9 col-12">
           <div className="px-5 bg-light ">
-            <div className="d-flex justify-content-between align-items-center py-2">
+            <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center py-2">
               <h6 className="text-body-secondary p-2">
                 Showing All Products (
                 <ProductCount productList={sortedProducts} />)
               </h6>
-              <p className="d-flex">
-                Sort By:{" "}
+              <div className="d-flex align-items-center gap-2">
+                <span>Sort By:</span>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
                   className="form-select text-center"
+                  style={{width:"160px"}}
                 >
                   <option value="" disabled>
                     --Select--
@@ -185,7 +186,7 @@ export default function Products() {
                   <option value="LowToHigh">Low To High</option>
                   <option value="HighToLow">High To Low</option>
                 </select>
-              </p>
+              </div>
             </div>
 
             <div className="row">

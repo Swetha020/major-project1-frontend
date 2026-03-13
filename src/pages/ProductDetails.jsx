@@ -53,12 +53,12 @@ export default function ProductDetail() {
                 className="img-fluid w-100"
               />
             </div>
-            <button
+            {/* <button
               className="btn btn-outline-secondary w-100 my-2"
               disabled={productData.availableQuantity === 0}
             >
               Buy now
-            </button>
+            </button> */}
             <button
               className="btn addProduct-button w-100"
               onClick={() => {

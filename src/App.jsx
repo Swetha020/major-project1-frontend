@@ -12,7 +12,7 @@ import Cart from "./pages/Cart";
 import Profile from "./pages/Profile";
 import { ProfileProvider } from "./context/ProfileContext";
 import { OrdersProvider } from "./context/OrdersContext";
-import { ToastContainer, Zoom  } from "react-toastify";
+import { ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function App() {
@@ -23,22 +23,24 @@ export default function App() {
           <OrdersProvider>
             <Router>
               <Nav />
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/products" element={<Products />} />
-                <Route
-                  path="/products/categories/:category"
-                  element={<Products />}
-                />
+              <div className="mb-5">
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/products" element={<Products />} />
+                  <Route
+                    path="/products/categories/:category"
+                    element={<Products />}
+                  />
 
-                <Route path="/wishList" element={<WishList />} />
-                <Route path="/cart" element={<Cart />} />
-                <Route
-                  path="/products/:productId"
-                  element={<ProductDetail />}
-                />
-                <Route path="/profile" element={<Profile />} />
-              </Routes>
+                  <Route path="/wishList" element={<WishList />} />
+                  <Route path="/cart" element={<Cart />} />
+                  <Route
+                    path="/products/:productId"
+                    element={<ProductDetail />}
+                  />
+                  <Route path="/profile" element={<Profile />} />
+                </Routes>
+              </div>
               <Footer />
               <ToastContainer
                 position="top-center"

@@ -1,12 +1,15 @@
 * {
   margin: 0;
   padding: 0;
+  
   box-sizing: border-box;
 }
 .App {
   font-family: sans-serif;
   text-align: center;
+ padding-bottom: 60px;
 }
+
 
 .navbar {
   background-color: #7b4b35;
