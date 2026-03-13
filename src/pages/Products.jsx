@@ -93,7 +93,7 @@ export default function Products() {
           <div className="filter-section ms-lg-5 me-4">
             <div className="ps-5 pt-4">
               <div className="d-flex justify-content-between align-items-center">
-                <h3 className="fw-bold">Filters</h3>
+                <h3 className="fw-bold m-2">Filters</h3>
                 <button
                   className="btn btn-link"
                   onClick={(e) => {

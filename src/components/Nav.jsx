@@ -16,12 +16,12 @@ export default function Nav() {
 
   return (
       <nav className="navbar navbar-expand-lg ">
-        <div className="container p-2">
-            <Link to="/" className="nav-brand ">
+        <div className="container p-2" >
+            <Link to="/" className="nav-brand mx-2 mx-lg-0" >
               FurniCart
             </Link>          
           <button
-            className="navbar-toggler"
+            className="navbar-toggler mb-3"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarIcons"
